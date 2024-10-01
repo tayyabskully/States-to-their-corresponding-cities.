@@ -1,0 +1,31 @@
+//This object maps U.S. states to their corresponding cities.
+//It is used to dynamically populate the city dropdown based on the selected state in JetFormBuilder.
+
+
+jQuery(document).ready(function($) {
+    // Object to hold states and their corresponding cities
+    var cities = {
+        'California': ['Los Angeles', 'San Francisco', 'San Diego', 'Sacramento'],
+        'Texas': ['Houston', 'Dallas', 'Austin', 'San Antonio'],
+        'Florida': ['Miami', 'Orlando', 'Tampa', 'Jacksonville'],
+        'Washington': ['Seattle', 'Spokane', 'Tacoma', 'Bellevue'],
+        // Add more states and cities as needed
+    };
+    // Listen for changes on the state dropdown
+    $('#state-dropdown').change(function() {
+        var selectedState = $(this).val();
+        var cityDropdown = $('#city-dropdown');
+        // Clear existing city options
+        cityDropdown.empty();
+        cityDropdown.append(new Option("Select a city", ""));
+        // Populate the city dropdown based on the selected state
+        if (cities[selectedState]) {
+            $.each(cities[selectedState], function(index, city) {
+                cityDropdown.append(new Option(city, city));
+            });
+        }
+    });
+});
+ //Implementation Example:
+//Use this object to populate the city dropdown in JetFormBuilder based on the selected state.
+//On state selection, clear the city dropdown and populate it with the corresponding cities from this object.
